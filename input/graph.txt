@@ -1,0 +1,10 @@
+Delhi Jaipur 280
+Delhi Mumbai 1400
+Jaipur Agra 240
+Agra Lucknow 330
+Lucknow Kanpur 90
+Mumbai Pune 150
+Pune Goa 450
+Delhi Chandigarh 250
+Chandigarh Shimla 120
+Shimla Manali 250
