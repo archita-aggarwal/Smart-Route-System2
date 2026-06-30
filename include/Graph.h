@@ -1,19 +1,23 @@
 #pragma once
 
-#include <string>
-#include <vector>
+#include <iostream>
 #include <unordered_map>
-#include <utility>
+#include <vector>
+#include <string>
 
 class Graph
 {
 private:
-    std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> adj;
     bool directed;
-    bool weighted;
+
+    std::unordered_map<
+        std::string,
+        std::vector<std::pair<std::string, int>>
+    > adjList;
 
 public:
-    Graph(bool isDirected = false, bool isWeighted = true);
+
+    Graph(bool directed = false);
 
     void addCity(const std::string &city);
 
@@ -21,18 +25,10 @@ public:
                  const std::string &destination,
                  int weight);
 
-    void removeRoad(const std::string &source,
-                    const std::string &destination);
-
-    void updateRoad(const std::string &source,
-                    const std::string &destination,
-                    int newWeight);
-
-    bool hasCity(const std::string &city) const;
-
     void display() const;
 
-    const std::unordered_map<std::string,
-          std::vector<std::pair<std::string,int>>>&
-    getGraph() const;
+    const std::unordered_map<
+        std::string,
+        std::vector<std::pair<std::string, int>>
+    >& getGraph() const;
 };

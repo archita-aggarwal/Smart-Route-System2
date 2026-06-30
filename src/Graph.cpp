@@ -1,22 +1,16 @@
 #include "D:/archita/CODES/Smart-Route-Planner/include/Graph.h"
 #include <iostream>
 
-Graph::Graph(bool isDirected, bool isWeighted)
+Graph::Graph(bool directed)
 {
-    directed = isDirected;
-    weighted = isWeighted;
-}
-
-bool Graph::hasCity(const std::string &city) const
-{
-    return adj.find(city) != adj.end();
+    this->directed = directed;
 }
 
 void Graph::addCity(const std::string &city)
 {
-    if (!hasCity(city))
+    if (adjList.find(city) == adjList.end())
     {
-        adj[city] = {};
+        adjList[city] = {};
     }
 }
 
@@ -24,107 +18,81 @@ void Graph::addRoad(const std::string &source,
                     const std::string &destination,
                     int weight)
 {
-    // Agar city exist nahi karti to bana do
     addCity(source);
     addCity(destination);
 
-    // Source -> Destination
-    adj[source].push_back({destination, weight});
+    bool exists = false;
 
-    // Agar graph undirected hai to reverse edge bhi add hogi
-    if (!directed)
-    {
-        adj[destination].push_back({source, weight});
-    }
-}
-
-void Graph::removeRoad(const std::string &source,
-                       const std::string &destination)
-{
-    if (!hasCity(source) || !hasCity(destination))
-        return;
-
-    auto &neighbours = adj[source];
-
-    for (auto it = neighbours.begin(); it != neighbours.end(); it++)
-    {
-        if (it->first == destination)
-        {
-            neighbours.erase(it);
-            break;
-        }
-    }
-
-    if (!directed)
-    {
-        auto &reverseNeighbours = adj[destination];
-
-        for (auto it = reverseNeighbours.begin(); it != reverseNeighbours.end(); it++)
-        {
-            if (it->first == source)
-            {
-                reverseNeighbours.erase(it);
-                break;
-            }
-        }
-    }
-}
-
-void Graph::updateRoad(const std::string &source,
-                       const std::string &destination,
-                       int newWeight)
-{
-    if (!hasCity(source) || !hasCity(destination))
-        return;
-
-    for (auto &edge : adj[source])
+    for (const auto &edge : adjList[source])
     {
         if (edge.first == destination)
         {
-            edge.second = newWeight;
+            exists = true;
             break;
         }
     }
 
+    if (!exists)
+    {
+        adjList[source].push_back({destination, weight});
+    }
+
     if (!directed)
     {
-        for (auto &edge : adj[destination])
+        exists = false;
+
+        for (const auto &edge : adjList[destination])
         {
             if (edge.first == source)
             {
-                edge.second = newWeight;
+                exists = true;
                 break;
             }
+        }
+
+        if (!exists)
+        {
+            adjList[destination].push_back({source, weight});
         }
     }
 }
 
 void Graph::display() const
 {
-    std::cout << "\n========== GRAPH ==========\n\n";
+    std::cout << "\n=============================\n";
+    std::cout << "        GRAPH DISPLAY\n";
+    std::cout << "=============================\n\n";
 
-    for (const auto &city : adj)
+    for (const auto &city : adjList)
     {
-        std::cout << city.first << " -> ";
+        std::cout << city.first << "\n";
 
-        for (const auto &edge : city.second)
+        if (city.second.empty())
         {
-            std::cout << "("
-                      << edge.first
-                      << ", "
-                      << edge.second
-                      << ") ";
+            std::cout << "   No Connections\n";
+        }
+        else
+        {
+            for (const auto &edge : city.second)
+            {
+                std::cout
+                    << "   --> "
+                    << edge.first
+                    << " ("
+                    << edge.second
+                    << " km)"
+                    << std::endl;
+            }
         }
 
-        std::cout << "\n";
+        std::cout << std::endl;
     }
-
-    std::cout << "\n===========================\n";
 }
 
-const std::unordered_map<std::string,
-std::vector<std::pair<std::string,int>>>&
-Graph::getGraph() const
+const std::unordered_map<
+    std::string,
+    std::vector<std::pair<std::string, int>>
+>& Graph::getGraph() const
 {
-    return adj;
+    return adjList;
 }

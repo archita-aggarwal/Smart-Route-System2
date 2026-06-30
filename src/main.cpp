@@ -16,6 +16,7 @@
 #include "D:/archita/CODES/Smart-Route-Planner/include/ArticulationPoint.h"
 #include "D:/archita/CODES/Smart-Route-Planner/include/SCC.h"
 #include "D:/archita/CODES/Smart-Route-Planner/include/AStar.h"
+#include <chrono>
 
 int main()
 {
@@ -74,60 +75,264 @@ int main()
                 break;
 
             case 2:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
                 bfs.traverse(graph, "Delhi");
+                auto end = std::chrono::high_resolution_clock::now();
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
                 break;
+            }
 
             case 3:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 dfs.traverse(graph, "Delhi");
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 4:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 cc.findComponents(graph);
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 5:
-                cycle.hasCycle(graph);
-                break;
+            {
+                auto start = std::chrono::high_resolution_clock::now();
 
-            case 6:
-                topo.sort(graph);
+                cycle.hasCycle(graph);
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
+            case 6:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
+                topo.sort(graph);
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
+                break;
+            }
 
             case 7:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 dijkstra.shortestPath(graph, "Delhi");
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 8:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 bellman.shortestPath(graph, "Delhi");
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 9:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 fw.shortestPaths(graph);
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 10:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 kruskal.minimumSpanningTree(graph);
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 11:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 prim.minimumSpanningTree(graph, "Delhi");
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 12:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 bridges.findBridges(graph);
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 13:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 ap.findPoints(graph);
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 14:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 scc.kosaraju(graph);
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 15:
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
                 astar.shortestPath(graph, "Delhi");
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end - start);
+
+                std::cout << "\nExecution Time : "
+                        << duration.count()
+                        << " milliseconds\n";
+
                 break;
+            }
 
             case 16:
 
