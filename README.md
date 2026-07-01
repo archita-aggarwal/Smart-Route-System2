@@ -1,4 +1,4 @@
-# 🚗 Smart Route Planner
+# 🚗 GraphRoute++ : Graph Algorithms Toolkit
 
 *A graph-based route optimization system built in Modern C++ that finds the shortest path between locations using Dijkstra's Algorithm.*
 
